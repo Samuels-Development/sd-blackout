@@ -45,11 +45,11 @@ RegisterNetEvent('sd-blackout:client:startblackout', function ()
                     QBCore.Functions.Notify("Cancelled", 'error')
                 end)
             else
-                QBCore.Functions.Notify("Someone Recently did this..", 'error')
+                QBCore.Functions.Notify("Someone Recently did this.", 'error')
             end
         end)
     else
-        QBCore.Functions.Notify("Cannot do this right now..", 'error')
+        QBCore.Functions.Notify("Cannot do this right now.", 'error')
 	end
 end)
 end)
