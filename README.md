@@ -3,7 +3,7 @@
 You plant a bomb, there's some nice explosions and the lights go off! Heavy inspiration taken from NoPixel obviously ;)
 
 
-- [Preview](https://www.youtube.com/watch?v=DxdVkQSX17I))
+- [Preview](https://www.youtube.com/watch?v=DxdVkQSX17I)
 
 Thanks for showing your personal interest in my work! 
 Please consider supporting ❤
