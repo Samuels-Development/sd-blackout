@@ -42,7 +42,7 @@ RegisterNetEvent('sd-blackout:client:startblackout', function ()
                     blackout = true
                     TriggerEvent('sd-bombplant')
                 end, function() -- Cancel
-                    BCore.Functions.Notify("Cancelled", 'error')
+                    QBCore.Functions.Notify("Cancelled", 'error')
                 end)
             else
                 QBCore.Functions.Notify("Someone Recently did this..", 'error')
