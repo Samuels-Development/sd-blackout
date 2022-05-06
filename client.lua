@@ -109,6 +109,7 @@ AddEventHandler('sd-blackoutfix', function()
         args = {"Power has been restored!"}
 	})
 	TriggerServerEvent("qb-weathersync:server:toggleBlackout")
+		blackout = false
 end)
 	
 -- Explosive Plant Animation
