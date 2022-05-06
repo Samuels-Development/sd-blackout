@@ -39,6 +39,7 @@ RegisterNetEvent('sd-blackout:client:startblackout', function ()
 					anim = 'a_uncuff',
 					flags = 16,
                 }, {}, {}, function() -- Done
+					bombanime()
 					TriggerServerEvent('sd-blackout:server:startr')
                     blackout = true
                 end, function() -- Cancel
@@ -60,8 +61,7 @@ RegisterNetEvent('sd-bombplant')
 AddEventHandler('sd-bombplant', function()
     QBCore.Functions.TriggerCallback('QBCore:HasItem', function(hasItem)
         if hasItem then
-            TriggerEvent('sd-blackout:client:startblackout')
-            bombanime()			
+            TriggerEvent('sd-blackout:client:startblackout')			
             TriggerEvent('inventory:client:ItemBox', QBCore.Shared.Items["c4_bomb"], "remove")
             TriggerServerEvent("QBCore:Server:RemoveItem", "c4_bomb", 1) 
             QBCore.Functions.Notify("Explosive has been planted! Get to safe a distance!", 'success')
@@ -98,11 +98,6 @@ AddEventHandler('sd-blackout', function()
 	Citizen.Wait(500)
 	TriggerServerEvent("qb-weathersync:server:toggleBlackout")
 end)
-
-RegisterCommand('blackout2', function(source, args, rawCommand)
-	TriggerEvent('sd-blackout')
-	end)
-
 
 -- Blackout Restoration
 
