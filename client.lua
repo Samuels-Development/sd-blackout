@@ -60,7 +60,8 @@ RegisterNetEvent('sd-bombplant')
 AddEventHandler('sd-bombplant', function()
     QBCore.Functions.TriggerCallback('QBCore:HasItem', function(hasItem)
         if hasItem then
-            bombanime()
+            TriggerEvent('sd-blackout:client:startblackout')
+            bombanime()			
             TriggerEvent('inventory:client:ItemBox', QBCore.Shared.Items["c4_bomb"], "remove")
             TriggerServerEvent("QBCore:Server:RemoveItem", "c4_bomb", 1) 
             QBCore.Functions.Notify("Explosive has been planted! Get to safe a distance!", 'success')
@@ -167,7 +168,7 @@ exports["qb-target"]:AddCircleZone("Bomb", vector3(651.99, 101.11, 81.16), 2.0, 
         options = {
             {
                 type = "client",
-                event = "sd-blackout:client:startblackout",
+                event = "sd-bombplant",
                 icon = "fas fa-bomb",
                 label = "Plant Explosive"
             },
