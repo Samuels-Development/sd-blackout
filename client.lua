@@ -24,6 +24,7 @@ end)
 -- Blackout Start
 
 RegisterNetEvent('sd-blackout:client:startblackout', function ()
+        TriggerEvent('sd-bombplant')
 	QBCore.Functions.TriggerCallback("sd-blackout:server:getCops", function(enoughCops)
     if enoughCops >= Config.MinimumPolice then
         QBCore.Functions.TriggerCallback("sd-blackout:server:coolc",function(isCooldown)
@@ -40,7 +41,6 @@ RegisterNetEvent('sd-blackout:client:startblackout', function ()
                 }, {}, {}, function() -- Done
 					TriggerServerEvent('sd-blackout:server:startr')
                     blackout = true
-                    TriggerEvent('sd-bombplant')
                 end, function() -- Cancel
                     QBCore.Functions.Notify("Cancelled", 'error')
                 end)
