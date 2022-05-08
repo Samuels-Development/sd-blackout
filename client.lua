@@ -61,9 +61,7 @@ AddEventHandler('sd-bombplant', function()
     QBCore.Functions.TriggerCallback('QBCore:HasItem', function(hasItem)
         if hasItem then
             TriggerEvent('sd-blackout:client:startblackout')			
-            TriggerEvent('inventory:client:ItemBox', QBCore.Shared.Items["c4_bomb"], "remove")
-            TriggerServerEvent("QBCore:Server:RemoveItem", "c4_bomb", 1) 
-            QBCore.Functions.Notify("Don't get too close to the transformers!", 'success')
+
             Citizen.Wait(1000)
             TriggerEvent("sd-blackout")
         else
@@ -77,6 +75,10 @@ end)
 
 RegisterNetEvent('sd-blackout')
 AddEventHandler('sd-blackout', function()
+		Citizen.Wait(5500)
+		    TriggerEvent('inventory:client:ItemBox', QBCore.Shared.Items["c4_bomb"], "remove")
+    TriggerServerEvent("QBCore:Server:RemoveItem", "c4_bomb", 1) 
+    QBCore.Functions.Notify("The explosive has been planted! Run away!", 'success')
 	Citizen.Wait(10500)
     AddExplosion(651.39, 100.92, 80.74, 2, 100000.0, true, false, 4.0)
 	Citizen.Wait(1000)
