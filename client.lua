@@ -26,8 +26,8 @@ end)
 RegisterNetEvent('sd-blackout:client:startblackout', function ()
 	QBCore.Functions.TriggerCallback("sd-blackout:server:getCops", function(enoughCops)
     if enoughCops >= Config.MinimumPolice then
-        QBCore.Functions.TriggerCallback("sd-blackout:server:coolc",function(isCooldown)
-            if not isCooldown then
+        QBCore.Functions.TriggerCallback("sd-blackout:server:coolc",function(isCooldown2)
+            if not isCooldown2 then
                 QBCore.Functions.Progressbar("search_register", "Preparing Explosive", 3000, false, true, {
                     disableMovement = true,
                     disableCarMovement = true,
@@ -39,6 +39,7 @@ RegisterNetEvent('sd-blackout:client:startblackout', function ()
 					flags = 16,
                 }, {}, {}, function() -- Done
                     bombanime()
+                    TriggerEvent("sd-blackout")
 					TriggerServerEvent('sd-blackout:server:startr')
                     blackout = true
                 end, function() -- Cancel
@@ -61,9 +62,7 @@ AddEventHandler('sd-bombplant', function()
     QBCore.Functions.TriggerCallback('QBCore:HasItem', function(hasItem)
         if hasItem then
             TriggerEvent('sd-blackout:client:startblackout')			
-
             Citizen.Wait(1000)
-            TriggerEvent("sd-blackout")
         else
             QBCore.Functions.Notify("You dont have C4!", 'error')
         end
