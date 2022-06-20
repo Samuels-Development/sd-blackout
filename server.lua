@@ -5,6 +5,28 @@ local Cooldown = false
 players = {}
 entities = {}
 
+- Syncing Server Side Events
+
+RegisterNetEvent('sd-blackout:server:blackoutsync', function()
+    TriggerClientEvent('sd-blackout:client:blackoutsync', -1)
+end)
+
+RegisterNetEvent('sd-blackout:server:restoresync', function()
+    TriggerClientEvent('sd-blackout:client:restoresync', -1)
+end)
+
+RegisterNetEvent('sd-blackout:server:interactionsync', function()
+    TriggerClientEvent('sd-blackout:client:interactionsync', -1)
+end)
+
+RegisterNetEvent('sd-blackout:server:lightsoff', function()
+    TriggerClientEvent('sd-blackout:client:lightsoff', -1)
+end)
+
+RegisterNetEvent('sd-blackout:server:lightson', function()
+    TriggerClientEvent('sd-blackout:client:lightson', -1)
+end)
+
 
 -- Starting Cooldown
 
