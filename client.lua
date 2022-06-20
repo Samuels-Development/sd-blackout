@@ -39,9 +39,10 @@ RegisterNetEvent('sd-blackout:client:startblackout', function ()
 					flags = 16,
                 }, {}, {}, function() -- Done
                     bombanime()
-                    TriggerEvent("sd-blackout")
+                    TriggerEvent("sd-blackout:client:blackout")
 					TriggerServerEvent('sd-blackout:server:startr')
-                    blackout = true
+                    TriggerServerEvent('sd-blackout:server:blackoutsync')
+                    TriggerServerEvent('sd-blackout:server:interactionsync')
                 end, function() -- Cancel
                     QBCore.Functions.Notify("Cancelled", 'error')
                 end)
@@ -57,8 +58,8 @@ end)
 
 -- Planting Bomb
 
-RegisterNetEvent('sd-bombplant')
-AddEventHandler('sd-bombplant', function()
+RegisterNetEvent('sd-blackout:client:bombplant')
+AddEventHandler('sd-blackout:client:bombplant', function()
     QBCore.Functions.TriggerCallback('QBCore:HasItem', function(hasItem)
         if hasItem then
             TriggerEvent('sd-blackout:client:startblackout')			
@@ -72,10 +73,18 @@ end)
 
 -- Explosion
 
-RegisterNetEvent('sd-blackout')
-AddEventHandler('sd-blackout', function()
-		Citizen.Wait(5500)
-		    TriggerEvent('inventory:client:ItemBox', QBCore.Shared.Items["c4_bomb"], "remove")
+RegisterNetEvent('sd-blackout:client:lightsoff', function()
+TriggerEvent("chat:addMessage", {
+    color = {255, 255, 255},
+    -- multiline = true,
+    template = '<div style="padding: 15px; margin: 15px; background-color: rgba(180, 117, 22, 0.9); border-radius: 15px;"><i class="far fa-building"style="font-size:15px"></i> | {0} </font></i></b></div>',
+    args = {"City Power is currently out, we're working on restoring it!"}
+})
+end)
+
+RegisterNetEvent('sd-blackout:client:blackout')
+AddEventHandler('sd-blackout:client:blackout', function()
+    TriggerEvent('inventory:client:ItemBox', QBCore.Shared.Items["c4_bomb"], "remove")
     TriggerServerEvent("QBCore:Server:RemoveItem", "c4_bomb", 1) 
     QBCore.Functions.Notify("The explosive has been planted! Run away!", 'success')
 	Citizen.Wait(10500)
@@ -89,28 +98,35 @@ AddEventHandler('sd-blackout', function()
         Citizen.Wait(800)
         AddExplosion(703.672, 108.393, 84.2194, 29, 600000000000000000000000.0, true, false, 2.5)
         Citizen.Wait(800)
-		TriggerEvent("chat:addMessage", {
-			color = {255, 255, 255},
-			-- multiline = true,
-			template = '<div style="padding: 15px; margin: 15px; background-color: rgba(180, 117, 22, 0.9); border-radius: 15px;"><i class="far fa-building"style="font-size:15px"></i> | {0} </font></i></b></div>',
-			args = {"City Power is currently out, we're working on restoring it!"}
-		})
+        TriggerServerEvent('sd-blackout:server:lightsoff')
+
 	Citizen.Wait(500)
-	TriggerServerEvent("qb-weathersync:server:toggleBlackout")
+	TriggerServerEvent("qb-weathersync:server:toggleBlackout", -1)
 end)
 
 -- Blackout Restoration
 
-RegisterNetEvent('sd-blackoutfix')
-AddEventHandler('sd-blackoutfix', function()
+RegisterNetEvent('sd-blackout:client:restoresync', function()
+    blackout = false
+end)
+
+RegisterNetEvent('sd-blackout:client:lightson', function()
 	TriggerEvent("chat:addMessage", {
         color = {255, 255, 255},
         -- multiline = true,
         template = '<div style="padding: 15px; margin: 15px; background-color: rgba(180, 117, 22, 0.9); border-radius: 15px;"><i class="far fa-building"style="font-size:15px"></i> | {0} </font></i></b></div>',
         args = {"Power has been restored!"}
 	})
+
+    TriggerServerEvent('sd-blackout:server:restoresync')
+
+end)
+
+RegisterNetEvent('sd-blackout:client:fixlights')
+AddEventHandler('sd-blackout:client:fixlights', function()
 	TriggerServerEvent("qb-weathersync:server:toggleBlackout")
-		blackout = false
+    TriggerServerEvent('sd-blackout:server:lightson', -1)
+	blackout = false
 end)
 	
 -- Explosive Plant Animation
