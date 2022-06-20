@@ -5,7 +5,7 @@ local Cooldown = false
 players = {}
 entities = {}
 
-- Syncing Server Side Events
+-- Syncing Server Side Events
 
 RegisterNetEvent('sd-blackout:server:blackoutsync', function()
     TriggerClientEvent('sd-blackout:client:blackoutsync', -1)
