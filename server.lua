@@ -15,10 +15,6 @@ RegisterNetEvent('sd-blackout:server:restoresync', function()
     TriggerClientEvent('sd-blackout:client:restoresync', -1)
 end)
 
-RegisterNetEvent('sd-blackout:server:interactionsync', function()
-    TriggerClientEvent('sd-blackout:client:interactionsync', -1)
-end)
-
 RegisterNetEvent('sd-blackout:server:lightsoff', function()
     TriggerClientEvent('sd-blackout:client:lightsoff', -1)
 end)
