@@ -180,13 +180,13 @@ exports["qb-target"]:AddCircleZone("Bomb", vector3(651.99, 101.11, 81.16), 2.0, 
         options = {
             {
                 type = "client",
-                event = "sd-blackout:client:startblackout",
+                event = "sd-blackout:client:bombplant",
                 icon = "fas fa-bomb",
                 label = "Plant Explosive"
             },
             { 	
                 type = "client",
-                event = "sd-blackout:client:lightson",
+                event = "sd-blackout:client:fixlights",
                 icon = "fas fa-user-secret",
                 label = "Restore Power",
                 job = "police",
