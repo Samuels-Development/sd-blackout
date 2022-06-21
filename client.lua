@@ -42,7 +42,6 @@ RegisterNetEvent('sd-blackout:client:startblackout', function ()
                     TriggerEvent("sd-blackout:client:blackout")
 					TriggerServerEvent('sd-blackout:server:startr')
                     TriggerServerEvent('sd-blackout:server:blackoutsync')
-                    TriggerServerEvent('sd-blackout:server:interactionsync')
                 end, function() -- Cancel
                     QBCore.Functions.Notify("Cancelled", 'error')
                 end)
