@@ -23,6 +23,10 @@ end)
 
 -- Blackout Start
 
+RegisterNetEvent('sd-blackout:client:blackoutsync', function()
+    blackout = true
+end)
+
 RegisterNetEvent('sd-blackout:client:startblackout', function ()
 	QBCore.Functions.TriggerCallback("sd-blackout:server:getCops", function(enoughCops)
     if enoughCops >= Config.MinimumPolice then
