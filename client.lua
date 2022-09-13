@@ -104,7 +104,7 @@ AddEventHandler('sd-blackout:client:blackout', function()
         TriggerServerEvent('sd-blackout:server:lightsoff')
 
 	Citizen.Wait(500)
-	TriggerServerEvent("qb-weathersync:server:toggleBlackout", -1)
+	TriggerServerEvent("qb-weathersync:server:toggleBlackout", true)
 end)
 
 -- Blackout Restoration
@@ -127,7 +127,7 @@ end)
 
 RegisterNetEvent('sd-blackout:client:fixlights')
 AddEventHandler('sd-blackout:client:fixlights', function()
-	TriggerServerEvent("qb-weathersync:server:toggleBlackout")
+	TriggerServerEvent("qb-weathersync:server:toggleBlackout", false)
     TriggerServerEvent('sd-blackout:server:lightson', -1)
 	blackout = false
 end)
