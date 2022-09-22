@@ -33,6 +33,20 @@ RegisterServerEvent('sd-blackout:server:startr', function()
         TriggerEvent('sd-blackout:server:coolout')
 	end)
 
+-- Item Check
+
+QBCore.Functions.CreateCallback('sd-cokemission:server:hasBomb', function(source, cb)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+	local hasBombItem = Player.Functions.GetItemByName('c4_bomb')
+ 
+	if hasBombItem ~= nil then
+        cb(true)
+    else
+        cb(false)
+    end
+end)
+
 -- Minimum Cop Callback
 
 QBCore.Functions.CreateCallback('sd-blackout:server:getCops', function(source, cb)
