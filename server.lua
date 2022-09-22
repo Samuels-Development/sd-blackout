@@ -35,7 +35,7 @@ RegisterServerEvent('sd-blackout:server:startr', function()
 
 -- Item Check
 
-QBCore.Functions.CreateCallback('sd-cokemission:server:hasBomb', function(source, cb)
+QBCore.Functions.CreateCallback('sd-blackout:server:hasBomb', function(source, cb)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
 	local hasBombItem = Player.Functions.GetItemByName('c4_bomb')
