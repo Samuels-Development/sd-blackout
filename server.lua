@@ -47,6 +47,16 @@ QBCore.Functions.CreateCallback('sd-blackout:server:hasBomb', function(source, c
     end
 end)
 
+-- Remove Item
+
+RegisterNetEvent('sd-blackout:server:removeC4bomb', function()
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+    if not Player then return end
+    Player.Functions.RemoveItem('c4_bomb', 1)
+    TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items["c4_bomb"], "remove")
+end)
+
 -- Minimum Cop Callback
 
 QBCore.Functions.CreateCallback('sd-blackout:server:getCops', function(source, cb)
