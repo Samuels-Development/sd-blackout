@@ -63,7 +63,7 @@ end)
 
 RegisterNetEvent('sd-blackout:client:bombplant')
 AddEventHandler('sd-blackout:client:bombplant', function()
-    QBCore.Functions.TriggerCallback('QBCore:HasItem', function(hasItem)
+    QBCore.Functions.TriggerCallback('sd-blackout:server:hasBomb', function(hasItem)
         if hasItem then
             TriggerEvent('sd-blackout:client:startblackout')			
             Citizen.Wait(1000)
