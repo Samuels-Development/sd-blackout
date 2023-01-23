@@ -87,7 +87,6 @@ end)
 
 RegisterNetEvent('sd-blackout:client:blackout')
 AddEventHandler('sd-blackout:client:blackout', function()
-    TriggerEvent('inventory:client:ItemBox', QBCore.Shared.Items["c4_bomb"], "remove")
     TriggerServerEvent('sd-blackout:server:removeC4bomb')
     QBCore.Functions.Notify("The explosive has been planted! Run away!", 'success')
 	Citizen.Wait(10500)
